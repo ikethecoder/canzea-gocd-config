@@ -1,0 +1,25 @@
+format_version: 3
+pipelines:
+  agent-terraform:
+    group: gocd-agents
+    label_template: "${gitrepo[:8]}"
+    lock_behavior: none
+    environment_variables:
+      PROJECT: terraform
+    materials:
+      gitrepo:
+        git: git@gitlab.com:ikethecoder/yamya-infra.git
+        branch: develop
+    stages:
+      - deploy:
+          clean_workspace: true
+          jobs:
+            deploy:
+              elastic_profile_id: "docker"
+              tasks:
+              - script: |
+                  cd cicd-agents/${PROJECT}
+                  docker build --tag $PROJECT.local .
+                  docker tag $PROJECT.local $REGISTRY/agents/${PROJECT}:latest
+                  docker push $REGISTRY/agents/${PROJECT}
+

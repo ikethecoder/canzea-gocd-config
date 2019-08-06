@@ -1,0 +1,20 @@
+format_version: 3
+environments:
+  cicd:
+    environment_variables:
+      GIT_REPO: git@gitlab.com:ikethecoder/yamya-infra.git
+      GIT_BRANCH: develop
+      REGISTRY: registry.ops.9350736.xyz
+    pipelines:
+      - agent-stack-golang111
+      - agent-stack-java8
+      - agent-stack-nodejs8
+      - agent-stack-python37
+      - agent-stack-ruby25
+      - agent-static-hugo
+      - agent-helm211
+      - agent-terraform
+      - agent-cloud-aws
+      - agent-cloud-digitalocean
+      - agent-vault
+

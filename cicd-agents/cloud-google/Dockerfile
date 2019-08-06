@@ -1,0 +1,1 @@
+FROM google/cloud-sdk:232.0.0-alpine

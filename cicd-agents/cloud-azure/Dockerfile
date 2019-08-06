@@ -1,0 +1,1 @@
+FROM microsoft/azure-cli:2.0.57
